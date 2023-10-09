@@ -162,6 +162,59 @@ int main()
     inputFile.close();
 
 
+    // Load animal names into the species' classes.
+    string filePath02 = "C:\\Users\\BE129\\cStuff\\animalNames.txt";
+    ifstream inputFile02(filePath02);
+    string names;
+
+    if (!inputFile02.is_open()) {
+        std::cerr << "Error: Unable to open file " << filePath02 << std::endl;
+        return 1;
+    }
+
+
+
+    string line02;
+    int lineNum = 1;
+    while (getline(inputFile02, line02)) {
+        if (lineNum ==3 ){
+            names = line02;
+        }
+        lineNum++;
+    }
+
+    // Close the file
+    inputFile02.close();
+
+    // Output the string of names
+    cout << "\n\n the line of names is: " << names << "\n\n";
+
+    // split the string into a vector
+    // Create a vector to store Animal objects
+    vector<string> animalNameList;
+
+    // this is what my names look like:
+    // Shenzi, Banzai, Ed, Zig, Bud, Lou, Kamari, Wema, Nne, Madoa, Prince Nevarah
+
+
+    int posStart = 0;
+    int posEnd = 0;
+    int posComma = 0;
+
+    posComma = names.find(",");
+
+    cout << "\n posComma is " << posComma << "\n\n";
+
+    // get the first name
+    string firstName = names.substr(posStart, posComma);
+    cout << "\n firstName is " << firstName << "\n\n";
+
+
+
+
+
+
+
     // Print the list of animals
     for (Animal someAnimal : animalList) {
         cout << "\n\n Name: " << someAnimal.getAnimalName() << "\n\n";
@@ -220,7 +273,6 @@ int main()
 
     return 0;
 }
-
 
 
 
